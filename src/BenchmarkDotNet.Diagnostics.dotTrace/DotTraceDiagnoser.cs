@@ -99,6 +99,11 @@ namespace BenchmarkDotNet.Diagnostics.dotTrace
                 case RuntimeMoniker.Net80:
                 case RuntimeMoniker.Net90:
                     return true;
+                // netcoreapp20 - netcoreapp30 are no longer supported.
+                case (RuntimeMoniker) 10:
+                case (RuntimeMoniker) 11:
+                case (RuntimeMoniker) 12:
+                case (RuntimeMoniker) 13:
                 case RuntimeMoniker.NotRecognized:
                 case RuntimeMoniker.Mono:
                 case RuntimeMoniker.NativeAot60:
@@ -124,11 +129,6 @@ namespace BenchmarkDotNet.Diagnostics.dotTrace
                 case RuntimeMoniker.NetCoreApp50:
 #pragma warning restore CS0618 // Type or member is obsolete
                     return false;
-                case RuntimeMoniker.NetCoreApp20:
-                case RuntimeMoniker.NetCoreApp21:
-                case RuntimeMoniker.NetCoreApp22:
-                    return RuntimeInformation.IsWindows();
-                case RuntimeMoniker.NetCoreApp30:
                 case RuntimeMoniker.NetCoreApp31:
                     return RuntimeInformation.IsWindows() || RuntimeInformation.IsLinux();
                 default:
