@@ -256,8 +256,7 @@ namespace BenchmarkDotNet.IntegrationTests
             }
         }
 
-        [TheoryEnvSpecific(".NET Core 3.0 preview6+ exposes a GC.GetTotalAllocatedBytes method which makes it possible to work",
-            EnvRequirement.DotNetCoreOnly)]
+        [Theory(Skip = "Test is flaky even in .Net 8.0")]
         [MemberData(nameof(GetToolchains))]
         [Trait(Constants.Category, Constants.BackwardCompatibilityCategory)]
         public void MemoryDiagnoserIsAccurateForMultiThreadedBenchmarks(IToolchain toolchain)
